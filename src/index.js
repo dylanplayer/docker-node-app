@@ -1,9 +1,10 @@
-const app = require('express')();
+const express = require('express');
+const app = express();
+
+app.use(express.static('src/static/'));
 
 app.get('/', (req, res) => {
-  res.json({
-    message: 'Docker is working 🐳',
-  });
+  res.sendFile('views/index.html', {root: __dirname });
 });
 
 const port = process.env.PORT || 8080;
