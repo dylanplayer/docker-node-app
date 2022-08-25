@@ -1,0 +1,20 @@
+version: "3"
+services:
+  web:
+    build: .
+    container_name: web
+    volumes:
+      - ".:/app"
+    ports:
+      - "8080:8080"
+
+  live-reloader:
+    image: apogiatzis/livereloading
+    container_name: livereloader
+    privileged: true
+    environment:
+      - RELOAD_DELAY=1.5
+      - RELOAD_CONTAINER=web
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - ".:/app"
